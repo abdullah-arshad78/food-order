@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import styles from "./Cart.module.css";
 import Modal from "../UI/Modal";
 import CartContext from "../../store/cart-context";
@@ -12,6 +12,30 @@ const Cart = (props) => {
   };
   const cartItemAddHandler = (item) => {
     cartCtx.addItem({ ...item, amount: 1 });
+  };
+  const deleteDatabase = async () => {
+    await fetch(
+      "https://food-order-18bb0-default-rtdb.europe-west1.firebasedatabase.app/orders.json",
+      {
+        method: "DELETE",
+      }
+    );
+  };
+  useEffect(() => {
+    deleteDatabase();
+  }, []);
+
+  const saveDataHandler = async () => {
+    await fetch(
+      "https://food-order-18bb0-default-rtdb.europe-west1.firebasedatabase.app/orders.json",
+      {
+        method: "POST",
+        body: JSON.stringify(cartCtx.items),
+        headers: { "content-Type": "application/json" },
+      }
+    );
+    props.onClose();
+    props.showOrderForm();
   };
   const cartItems = (
     <ul className={styles["cart-items"]}>
@@ -29,19 +53,25 @@ const Cart = (props) => {
   );
 
   return (
-    <Modal onClose={props.onClose}>
-      {cartItems}
-      <div className={styles.total}>
-        <span>Total Amount</span>
-        <span>{totalAmount}</span>
-      </div>
-      <div className={styles.actions}>
-        <button className={styles["button--alt"]} onClick={props.onClose}>
-          Close
-        </button>
-        {hasItems && <button className={styles.button}>Order</button>}
-      </div>
-    </Modal>
+    <>
+      <Modal onClose={props.onClose}>
+        {cartItems}
+        <div className={styles.total}>
+          <span>Total Amount</span>
+          <span>{totalAmount}</span>
+        </div>
+        <div className={styles.actions}>
+          <button className={styles["button--alt"]} onClick={props.onClose}>
+            Close
+          </button>
+          {hasItems && (
+            <button onClick={saveDataHandler} className={styles.button}>
+              Order
+            </button>
+          )}
+        </div>
+      </Modal>
+    </>
   );
 };
 

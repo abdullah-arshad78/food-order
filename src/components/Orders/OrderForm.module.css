@@ -1,0 +1,82 @@
+.order-form{
+    background: #eaeaea;
+    border-radius: .5rem;
+    padding: 2rem ;
+}
+.form-control{
+    margin: .4rem 0;
+}
+.form-control label{
+    display: block;
+    color: rgb(113, 43, 43);
+    font-weight: bold;
+}
+.form-control input{
+    display: block;
+    margin-top: .3rem;
+    border: 0;
+    padding: .3rem .5rem;
+    border-radius: .3rem;
+    width: 100%;
+}
+.form-control input:focus{
+    outline: 0;
+}
+.form-control.invalid input{
+    border-bottom: 2px solid rgb(168, 90, 90);
+}
+.form-control.postcode{
+    display: inline-block;
+    width: 30%;
+}
+.form-control.state{
+    display: inline-block;
+    width: 30%;
+    margin-left: 4rem;
+}
+.form-control.country select{
+    border: 0;
+    padding: .3rem .5rem;
+    border-radius: .3rem;
+    margin-top: .3rem;
+}
+.form-control.country select:focus{
+    outline: 0;
+}
+.order-form button{
+    padding: .5rem .8rem;
+    margin-top: 1.2rem;
+    border: 0;
+    background-color:rgb(113, 43, 43) ;
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: .6rem;
+    cursor: pointer;
+
+}
+.order-form button:hover{
+    padding: .5rem .8rem;
+    margin-top: .5rem;
+    border: 0;
+    background-color: transparent;
+    color:rgb(113, 43, 43) ;
+    border: 2px solid rgb(113, 43, 43) ;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: .6rem;
+}
+.order-form button:disabled{
+    border: 0;
+    background-color: rgb(128, 125, 125);
+    color: #fff;
+    cursor: not-allowed;
+}
+
+.error{
+    font-size: .7rem;
+    color: rgb(168, 90, 90);
+}
+.success{
+    color: green;
+}

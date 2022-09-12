@@ -6,9 +6,11 @@ import CartContext from "../../store/cart-context";
 const HeaderCartButton = (props) => {
   const cartCtx = useContext(CartContext);
   const { items } = cartCtx;
-  const numberOfCartItems = items.reduce((currentNum, item) => {
-    return currentNum + item.amount;
-  }, 0);
+  const numberOfCartItems = items
+    .map((meal) => meal.amount)
+    .reduce((currentNum, item) => {
+      return currentNum + item;
+    }, 0);
 
   const [btnIsHighlighted, setBtnIsHighlighted] = useState(false);
 
